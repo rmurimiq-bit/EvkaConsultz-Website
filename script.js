@@ -89,48 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Contact Form Submission (Independent Check)
-(function () {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
 
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
-
-            // Construct mailto link
-            const subject = encodeURIComponent(`New Contact Message: ${data['contact-subject']}`);
-            const body = encodeURIComponent(
-                `Name: ${data['contact-name']}\n` +
-                `Email: ${data['contact-email']}\n` +
-                `Subject: ${data['contact-subject']}\n\n` +
-                `Message:\n${data['contact-message']}`
-            );
-
-            const mailtoLink = `mailto:info@evkaconsultz.com?subject=${subject}&body=${body}`;
-
-            // Simulate sending (User feedback)
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-
-            submitBtn.textContent = 'Opening Email Client...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                window.location.href = mailtoLink;
-
-                // Reset UI
-                submitBtn.textContent = 'Sent!';
-                setTimeout(() => {
-                    contactForm.reset();
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }, 2000);
-            }, 800);
-        });
-    }
-})();
 
 function lockPinLocation() {
     alert("Location saved! (This is a placeholder action)");
