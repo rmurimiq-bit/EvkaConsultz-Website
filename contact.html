@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>window.huggingface = { variables: { "SPACE_CREATOR_USER_ID": "6901c9dfc47395aa55ef37cc" } };</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Evka Consultz</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="components/navbar.js?v=6"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/enrollment-modal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("dykvSDdx_GwvnPC40");
+        })();
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.is-open {
+            display: flex;
+        }
+
+        .modal-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <custom-navbar></custom-navbar>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-blue-800 to-teal-600 text-white py-20 px-4 md:px-8 lg:px-16">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+            <p class="text-xl opacity-90">We're here to help with your regulatory needs.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 text-blue-800">Get in Touch</h2>
+                    <form id="contactForm" method="post" class="space-y-6">
+                        <div>
+                            <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Full
+                                Name</label>
+                            <input type="text" id="contact-name" name="contact-name" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email
+                                Address</label>
+                            <input type="email" id="contact-email" name="contact-email" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label for="contact-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone
+                                Number</label>
+                            <input type="tel" id="contact-phone" name="contact-phone"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div>
+                            <label for="contact-subject"
+                                class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <select id="contact-subject" name="contact-subject" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white">
+                                <option value="" disabled selected>Select a subject</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Training Programs">Training Programs</option>
+                                <option value="Regulatory Affairs">Regulatory Affairs</option>
+                                <option value="Pharmacovigilance">Pharmacovigilance</option>
+                                <option value="Quality Assurance">Quality Assurance</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="contact-message"
+                                class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="contact-message" name="contact-message" rows="4" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-md"
+                            onclick="SendMail()">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info & Map -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-blue-800">Contact Details</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <i data-feather="map-pin" class="text-teal-500 w-6 h-6 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Our Location</h4>
+                                <p class="text-gray-600">Marurui Estate, Next to Marurui Police post, <br>Gate No.52,
+                                    Ushindi Lane, <br>Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="phone" class="text-teal-500 w-6 h-6 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Phone Number</h4>
+                                <p class="text-gray-600">0732 451324 / 0773 492277</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="mail" class="text-teal-500 w-6 h-6 mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Email Address</h4>
+                                <p class="text-gray-600">info@evkaconsultz.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Map -->
+                    <div class="w-full h-64 rounded-xl overflow-hidden shadow-sm">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1410.298832495499!2d36.86895608258484!3d-1.2107962897155233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f154bccc9c273%3A0x843812df9cbf1644!2sEvka%20consultz!5e0!3m2!1sen!2ske!4v1764496909500!5m2!1sen!2ske"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center text-blue-800">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <details class="group">
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg text-gray-800 hover:bg-gray-50 transition duration-300">
+                            <span>What services does Evka Consultz provide?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i data-feather="chevron-down" class="w-5 h-5 text-teal-500"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 px-6 pb-6 animate-fadeIn">
+                            We offer comprehensive pharmaceutical consulting services including regulatory affairs,
+                            quality assurance, pharmacovigilance, and professional training programs tailored to the
+                            African market.
+                        </div>
+                    </details>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <details class="group">
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg text-gray-800 hover:bg-gray-50 transition duration-300">
+                            <span>Which countries do you serve?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i data-feather="chevron-down" class="w-5 h-5 text-teal-500"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 px-6 pb-6 animate-fadeIn">
+                            We serve clients across the African continent, with particular expertise in East African
+                            regulatory frameworks. Our team has experience working with regulatory authorities in
+                            multiple African countries.
+                        </div>
+                    </details>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <details class="group">
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg text-gray-800 hover:bg-gray-50 transition duration-300">
+                            <span>How can I enroll in your training programs?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i data-feather="chevron-down" class="w-5 h-5 text-teal-500"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 px-6 pb-6 animate-fadeIn">
+                            You can enroll in our training programs through our Training page or by contacting us
+                            directly. We offer both in-person and virtual training options to accommodate different
+                            learning preferences.
+                        </div>
+                    </details>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <details class="group">
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg text-gray-800 hover:bg-gray-50 transition duration-300">
+                            <span>What is your typical response time for inquiries?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i data-feather="chevron-down" class="w-5 h-5 text-teal-500"></i>
+                            </span>
+                        </summary>
+                        <div class="text-gray-600 px-6 pb-6 animate-fadeIn">
+                            We respond to all inquiries within 24 hours during business days. For urgent matters
+                            requiring immediate attention, we recommend calling our office directly.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+    <script>
+        feather.replace();
+    </script>
+    <script>
+        function SendMail() {
+            var params = {
+                from_name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                phone: document.getElementById('contact-phone').value,
+                subject: document.getElementById('contact-subject').value,
+                message: document.getElementById('contact-message').value
+            }
+            emailjs.send("service_152pxi9", "template_j9ivugg", params).then(function (res) {
+                window.open("success.html");
+            })
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
